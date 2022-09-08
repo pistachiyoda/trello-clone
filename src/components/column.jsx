@@ -21,7 +21,7 @@ export const Column = (props) => {
         {(provided) => (
           <ul ref={provided.innerRef} {...provided.droppableProps}>
             {tasks.map((task, index) => {
-              return <Item id={task.id} content={task.content} index={index}></Item>;
+              return <Item key={task.id} id={task.id} content={task.content} index={index}></Item>;
             })}
             {provided.placeholder}
           </ul>
