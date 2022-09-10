@@ -5,6 +5,7 @@ import initialData from './initial-data';
 import { Header } from './components/header/Header';
 import styled from 'styled-components';
 import bgimg from '../src/images/image.jpg';
+import { TaskCards } from './components/task/Taskcards';
 
 const Wrapper = styled.div`
   background: url(${bgimg});  
@@ -42,13 +43,14 @@ function App() {
     <div className="test">
       <Wrapper>
         <Header></Header>
-        <DragDropContext onDragEnd={onDragEnd}>
+        <TaskCards />
+        {/* <DragDropContext onDragEnd={onDragEnd}>
           {taskData.columnOrder.map((columnId) => {
             const column = taskData.columns[columnId];
             const tasks = column.taskIds.map((taskId) => taskData.tasks[taskId]);
             return <Column key={column.id} column={column} tasks={tasks} />;
           })}
-        </DragDropContext>
+        </DragDropContext> */}
       </Wrapper>
     </div>
   );
