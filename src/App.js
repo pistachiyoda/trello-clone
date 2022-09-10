@@ -2,6 +2,16 @@ import { useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { Column } from './components/column';
 import initialData from './initial-data';
+import { Header } from './components/header/Header';
+import styled from 'styled-components';
+import bgimg from '../src/images/image.jpg';
+
+const Wrapper = styled.div`
+  background: url(${bgimg});  
+  background-repeat: no-repeat;
+  background-size: cover; 
+  height: 100vh;
+`;
 
 function App() {
   const [taskData, setTaskData] = useState(initialData);
@@ -29,13 +39,18 @@ function App() {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      {taskData.columnOrder.map((columnId) => {
-        const column = taskData.columns[columnId];
-        const tasks = column.taskIds.map((taskId) => taskData.tasks[taskId]);
-        return <Column key={column.id} column={column} tasks={tasks} />;
-      })}
-    </DragDropContext>
+    <div className="test">
+      <Wrapper>
+        <Header></Header>
+        <DragDropContext onDragEnd={onDragEnd}>
+          {taskData.columnOrder.map((columnId) => {
+            const column = taskData.columns[columnId];
+            const tasks = column.taskIds.map((taskId) => taskData.tasks[taskId]);
+            return <Column key={column.id} column={column} tasks={tasks} />;
+          })}
+        </DragDropContext>
+      </Wrapper>
+    </div>
   );
 }
 
