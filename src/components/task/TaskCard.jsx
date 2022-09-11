@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TaskCardTitle from './TaskCardTitle';
 import TaskCardDeleteButton from './button/TaskCardDeleteButton';
 import TaskAddInput from './input/TaskAddInput';
 import styled from 'styled-components';
+import Tasks from './Tasks';
 
 const Container = styled.div`
   width: 250px;
@@ -13,11 +14,19 @@ const Container = styled.div`
 `;
 
 const TaskCard = () => {
+  const [inputText, setInputText] = useState('');
+  const [taskList, setTaskList] = useState([]);
   return (
     <Container>
       <TaskCardTitle />
       <TaskCardDeleteButton />
-      <TaskAddInput />
+      <TaskAddInput
+        inputText={inputText}
+        setInputText={setInputText}
+        taskList={taskList}
+        setTaskList={setTaskList}
+      />
+      <Tasks inputText={inputText} taskList={taskList} />
     </Container>
   );
 };
