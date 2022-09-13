@@ -15,7 +15,14 @@ const TaskAddInput = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputText === '') return;
-    setTaskList([...taskList, { id: taskList.length, text: inputText }]);
+    setTaskList([
+      ...taskList,
+      {
+        id: taskList.length,
+        draggableId: `task-${taskList.length}`,
+        text: inputText,
+      },
+    ]);
     setInputText('');
   };
   const handleChange = (e) => {

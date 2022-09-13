@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Draggable } from 'react-beautiful-dnd';
 
 const TaskBox = styled.div`
   display: flex;
@@ -29,12 +30,16 @@ const Task = (props) => {
     setTaskList(updatedTaskList);
   };
   return (
-    <TaskBox>
-      <TaskText>{task.text}</TaskText>
-      <TaskTrashButton onClick={() => handleDelete(task.id, taskList, setTaskList)}>
-        <i className="fa-solid fa-trash-can"></i>
-      </TaskTrashButton>
-    </TaskBox>
+    <Draggable index={task.id} draggableId={task.draggableId}>
+      {(provided) => (
+        <TaskBox {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+          <TaskText>{task.text}</TaskText>
+          <TaskTrashButton onClick={() => handleDelete(task.id, taskList, setTaskList)}>
+            <i className="fa-solid fa-trash-can"></i>
+          </TaskTrashButton>
+        </TaskBox>
+      )}
+    </Draggable>
   );
 };
 
