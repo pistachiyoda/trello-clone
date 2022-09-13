@@ -24,13 +24,13 @@ const TaskTrashButton = styled.button`
 `;
 
 const Task = (props) => {
-  const { task, taskList, setTaskList } = props;
+  const { task, index, taskList, setTaskList } = props;
   const handleDelete = (id, taskList, setTaskList) => {
     const updatedTaskList = taskList.filter((task) => id !== task.id);
     setTaskList(updatedTaskList);
   };
   return (
-    <Draggable index={task.id} draggableId={task.draggableId}>
+    <Draggable draggableId={task.draggableId} index={index}>
       {(provided) => (
         <TaskBox {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
           <TaskText>{task.text}</TaskText>

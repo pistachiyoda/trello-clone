@@ -6,19 +6,23 @@ import { Droppable } from 'react-beautiful-dnd';
 const Tasks = (props) => {
   const { taskList, setTaskList } = props;
 
-  const onDragEnd = (e) => {
-    console.log(e);
+  const handleDragEnd = (result) => {
+    const { destination, source } = result;
+    const updatedTaskList = [...taskList];
+    const movedTask = updatedTaskList.splice(source.index, 1);
+    updatedTaskList.splice(destination.index, 0, movedTask[0]);
+    setTaskList(updatedTaskList);
   };
   return (
     <div>
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="droppable">
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               {taskList.map((task, index) => {
                 return (
                   <Task
-                    key={index}
+                    key={task.id}
                     task={task}
                     index={index}
                     taskList={taskList}
