@@ -26,7 +26,7 @@ const TaskTrashButton = styled.button`
 const Task = (props) => {
   const { task, taskList, setTaskList } = props;
   const handleDelete = (id, taskList, setTaskList) => {
-    const updatedTaskList = taskList.filter((_, i) => id !== i);
+    const updatedTaskList = taskList.filter((task) => id !== task.id);
     setTaskList(updatedTaskList);
   };
   return (
