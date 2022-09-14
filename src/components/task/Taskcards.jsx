@@ -20,7 +20,14 @@ export const TaskCards = () => {
   return (
     <TaskCardArea>
       {taskCardsList.map((taskCardList) => {
-        return <TaskCard key={taskCardList.id} />;
+        return (
+          <TaskCard
+            key={taskCardList.id}
+            id={taskCardList.id}
+            taskCardsList={taskCardsList}
+            settaskCardsList={settaskCardsList}
+          />
+        );
       })}
       <AddTaskCardButton taskCardsList={taskCardsList} settaskCardsList={settaskCardsList} />
     </TaskCardArea>

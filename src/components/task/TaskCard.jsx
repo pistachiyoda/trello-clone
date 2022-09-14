@@ -13,13 +13,25 @@ const Container = styled.div`
   border-radius: 5px;
 `;
 
-const TaskCard = () => {
+const TaskCardHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const TaskCard = (props) => {
+  const { id, taskCardsList, settaskCardsList } = props;
   const [inputText, setInputText] = useState('');
   const [taskList, setTaskList] = useState([]);
   return (
     <Container>
-      <TaskCardTitle />
-      <TaskCardDeleteButton />
+      <TaskCardHeader>
+        <TaskCardTitle />
+        <TaskCardDeleteButton
+          id={id}
+          taskCardsList={taskCardsList}
+          settaskCardsList={settaskCardsList}
+        />
+      </TaskCardHeader>
       <TaskAddInput
         inputText={inputText}
         setInputText={setInputText}
