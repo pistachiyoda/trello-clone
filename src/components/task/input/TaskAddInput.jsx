@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 
 const TaskInput = styled.input`
   width: 100%;
@@ -18,8 +19,8 @@ const TaskAddInput = (props) => {
     setTaskList([
       ...taskList,
       {
-        id: taskList.length,
-        draggableId: `task-${taskList.length}`,
+        id: `${uuidv4()}`,
+        draggableId: `task-${uuidv4()}`,
         text: inputText,
       },
     ]);
