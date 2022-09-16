@@ -20,8 +20,11 @@ export const TaskCards = () => {
     },
   ]);
 
-  const handleDragEnd = (event) => {
-    console.log(event);
+  const handleDragEnd = (e) => {
+    const updatedTaskCardsList = [...taskCardsList];
+    const movedCard = updatedTaskCardsList.splice(e.source.index, 1);
+    updatedTaskCardsList.splice(e.destination.index, 0, ...movedCard);
+    settaskCardsList(updatedTaskCardsList);
   };
 
   return (
